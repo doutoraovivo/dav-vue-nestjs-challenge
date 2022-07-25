@@ -68,7 +68,7 @@ funcional com o mínimo de informação.
         <li>Registro (estrutura sigla-codigo-estado) (ex: CRM 12345/SP) Registro pode ser CRM, CRO e CRP. </li>
     </ol>
 </li>
-<li>Adicionar o campo estado em person (Filtros, Listagem, Edição).</li>
+<li>Adicionar o campo estado (SP, RJ, etc) em person (Filtros, Listagem, Edição).</li>
 <li>Depois de caprichar, comite para seu código para seu repo e dê permissão para o usuário 'dav-luciano'</li>
 </ol>
 
