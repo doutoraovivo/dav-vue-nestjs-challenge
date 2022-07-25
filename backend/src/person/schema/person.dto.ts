@@ -1,6 +1,15 @@
+import { constants } from 'src/util';
 import { Person } from '../../persistence/person';
 import { ApiProperty } from '@nestjs/swagger';
-import {IsBoolean, IsDateString, IsNotEmpty, IsString, Matches} from 'class-validator';
+import {
+  IsBoolean,
+  IsDateString,
+  IsIn,
+  IsNotEmpty,
+  IsString,
+  Length,
+  Matches,
+} from 'class-validator';
 
 export class PersonDto {
   @ApiProperty({
@@ -30,6 +39,17 @@ export class PersonDto {
   @IsDateString({})
   @Matches(/^\d{4}-\d{2}-\d{2}$/)
   birth_date: Person['birthDate'];
+
+  @ApiProperty({
+    description: 'Sigla do estado da pessoa.',
+    type: String,
+    example: 'AL',
+  })
+  @IsString()
+  @Length(2, 2)
+  @IsNotEmpty()
+  @IsIn(constants.BRAZILIAN_STATES)
+  state: Person['state'];
 
   @ApiProperty({
     description:
