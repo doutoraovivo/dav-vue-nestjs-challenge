@@ -61,7 +61,7 @@ funcional com o mínimo de informação.
 
 ### Tarefa
 <ol>
-<li>Faça o fork desse projeto para sua conta do github para um repo privado com permissão para o usuário 'doutoraovivo'</li>
+<li>Faça o fork desse projeto para sua conta do github para um repo PRIVADO</li>
 <li>Montar um CRUD de profissional.Os campos de criação e edição são:
     <ol>
         <li>Nome (ex: Josué Alcantara da Costa</li>
@@ -69,7 +69,7 @@ funcional com o mínimo de informação.
     </ol>
 </li>
 <li>Adicionar o campo estado em person (Filtros, Listagem, Edição).</li>
-<li>Depois de caprichar, comite para seu código para seu repo e dê permissão para o usuário 'doutoraovivo'</li>
+<li>Depois de caprichar, comite para seu código para seu repo e dê permissão para o usuário 'dav-luciano'</li>
 </ol>
 
 Quando terminar, marque sua entrevista com o link do Calendly enviado junto com o convite desse desafio.
