@@ -1,0 +1,22 @@
+{
+  "name": "dav-vue-nestjs-challenge",
+  "version": "1.0.0",
+  "description": "Base Exam Test",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "start": "npm run build && npm start --workspace=backend"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "author": "Luciano Jesus Lima <luciano@doutoraovivo.com.br>",
+  "license": "ISC",
+  "dependencies": {
+    "@types/quotesy": "^1.0.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "quotesy": "^1.0.8"
+  }
+}
