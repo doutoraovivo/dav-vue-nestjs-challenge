@@ -72,6 +72,7 @@ export class PersonController extends BaseController {
       return result.map((person) => ({
         key: person.key,
         name: person.name,
+        state: person.state,
         birth_date: person.birthDate,
         status: person.status,
       }));
@@ -90,6 +91,7 @@ export class PersonController extends BaseController {
   ): Promise<CreatePersonResponseDto> {
     return this.service.put({
       name: entity.name,
+      state: entity.state,
       birthDate: entity.birth_date,
     });
   }
@@ -129,6 +131,7 @@ export class PersonController extends BaseController {
       res.json({
         key: person.key,
         name: person.name,
+        state: person.state,
         birth_date: person.birthDate,
         status: person.status,
       });
@@ -157,11 +160,13 @@ export class PersonController extends BaseController {
     try {
       const updated = await this.service.update(param.key, {
         name: person.name,
+        state: person.state,
         birthDate: person.birth_date,
       });
       res.json({
         key: param.key,
         name: updated.name,
+        state: updated.state,
         birth_date: updated.birthDate,
         status: updated.status,
       });

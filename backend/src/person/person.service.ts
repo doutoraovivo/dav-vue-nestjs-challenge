@@ -25,6 +25,7 @@ export class PersonService {
     return this.dao.put({
       name: person.name,
       birthDate: person.birthDate,
+      state: person.state,
       status: true,
     });
   }
@@ -36,6 +37,7 @@ export class PersonService {
   async update(key: Person['key'], person: Omit<Person, 'key' | 'status'>) {
     const old = await this.dao.get(key);
     old.name = person.name;
+    old.state = person.state;
     old.birthDate = person.birthDate;
     return this.dao.update(old);
   }
