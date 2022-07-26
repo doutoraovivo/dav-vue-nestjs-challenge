@@ -6,6 +6,9 @@
 </figure>
 </a>
 
+
+### ⚠️ATENÇÃO⚠️ o desafio não é durante a entrevista. É para ser feito com atenção, qualidade e no seu tempo. Após fazer a tarefa, comite no seu fork e marque a entrevista para que possamos dar uma olhada e usar isso para perguntas. </span>
+
 ## Bem vindo ao Doutor ao Vivo
 ### Olá, que bom que está aqui...
 Se você está vendo esse README.md quer dizer que em breve vamos bate-papo para te conhecer melhor. 
