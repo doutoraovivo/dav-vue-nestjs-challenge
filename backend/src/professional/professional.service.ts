@@ -35,6 +35,7 @@ export class ProfessionalService {
   ) {
     const old = await this.dao.get(key);
     old.name = professional.name;
+    old.registry = professional.registry;
     return this.dao.update(old);
   }
 }
