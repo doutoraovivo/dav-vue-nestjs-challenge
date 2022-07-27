@@ -4,10 +4,10 @@
       <v-col
         ><v-chip-group>
           <span
-            v-for="([name, value], index) in Object.entries($route.query)"
+            v-for="([key, value], index) in Object.entries($route.query)"
             :key="index"
           >
-            <v-chip v-if="value">{{ name }}:{{ value }}</v-chip>
+            <v-chip v-if="value">{{ key }}:{{ value }}</v-chip>
           </span>
         </v-chip-group></v-col
       >
@@ -70,6 +70,11 @@ export default {
   inject: ['appBar'],
 
   props: {
+    name: {
+      type: String,
+      required: true,
+    },
+
     dispatch: {
       type: String,
       required: true,
@@ -175,7 +180,7 @@ export default {
       }
     },
     deleteItems() {
-      this.$store.dispatch('person/delete', this.ui.selected);
+      this.$store.dispatch(`${this.name}/delete`, this.ui.selected);
       this.ui.selected = undefined;
       this.$store.dispatch('common/selection', undefined);
     },

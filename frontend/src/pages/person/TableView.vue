@@ -2,6 +2,7 @@
   <span>
     <dav-table-view
       :headers="headers"
+      name="person"
       getter="person/read"
       dispatch="person/find"
       route-new="/person/new"
