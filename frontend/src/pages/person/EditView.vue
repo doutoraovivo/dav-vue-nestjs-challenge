@@ -62,6 +62,20 @@
                 </v-menu>
               </v-col>
             </v-row>
+            <v-row>
+              <v-col class="col-12 col-sm-6">
+                <v-select
+                  id="form__state"
+                  v-model="entity.state"
+                  :items="form.state.options"
+                  item-text="state"
+                  item-value="abbr"
+                  label="Select"
+                  :rules="form.state.rules"
+                  required
+                />
+              </v-col>
+            </v-row>
           </v-container>
         </v-form>
       </v-card-text>
@@ -70,6 +84,7 @@
 </template>
 
 <script>
+import { BRAZILIAN_STATES } from '../../util/constants';
 const campoObrigatorio = [(v) => !!v || 'Campo obrigatório'];
 
 export default {
@@ -87,11 +102,19 @@ export default {
       birth_date: {
         rules: campoObrigatorio,
       },
+      state: {
+        rules: campoObrigatorio,
+        options: BRAZILIAN_STATES.map((el) => {
+          const [[abbr, state]] = Object.entries(el);
+          return { abbr, state };
+        }),
+      },
     },
     entity: {
       key: undefined,
       name: undefined,
       birth_date: undefined,
+      state: undefined,
       status: undefined,
     },
   }),
