@@ -12,6 +12,9 @@
       <template #item.birth_date="{ item }">
         {{ formatDate(item.birth_date) }}
       </template>
+      <template #item.state="{ item }">
+        {{ formatStateToUpperCase(item.state) }}
+      </template>
     </dav-table-view>
     <router-view></router-view>
   </span>
@@ -34,11 +37,15 @@ export default {
         value: 'name',
       },
       { text: 'Data de Nascimento', value: 'birth_date' },
+      { text: 'Estado', value: 'state' },
     ],
   }),
   methods: {
     formatDate(date) {
       return moment(date, 'YYYY-MM-DD').format('L');
+    },
+    formatStateToUpperCase(state) {
+      return state?.toUpperCase();
     },
   },
 };
