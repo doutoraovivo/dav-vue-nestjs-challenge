@@ -31,7 +31,7 @@ export class ProfessionalService {
 
   async update(
     key: Professional['key'],
-    professional: Omit<Professional, 'key' | 'registry' | 'status'>,
+    professional: Omit<Professional, 'key' | 'status'>,
   ) {
     const old = await this.dao.get(key);
     old.name = professional.name;

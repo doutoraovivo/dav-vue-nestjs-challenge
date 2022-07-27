@@ -133,6 +133,7 @@ export class ProfessionalController extends BaseController {
     try {
       const updated = await this.service.update(param.key, {
         name: professional.name,
+        registry: professional.registry,
       });
       res.json({
         key: param.key,
