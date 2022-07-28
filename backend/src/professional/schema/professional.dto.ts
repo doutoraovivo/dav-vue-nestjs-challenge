@@ -40,7 +40,7 @@ export class ProfessionalDto {
 
   @ApiProperty({
     description:
-      'Se esta pessoa está ativa no sistema, status é verdadeiro. Senão não, falso.',
+      'Se esta pessoa está ativa no sistema, status é verdadeiro. Se não, falso.',
     type: Boolean,
     example: true,
   })
