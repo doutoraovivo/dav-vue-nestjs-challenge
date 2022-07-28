@@ -1,5 +1,3 @@
-import { Controller } from '@nestjs/common';
-
 import { UsePipes, ValidationPipe } from '@nestjs/common';
 
 @UsePipes(

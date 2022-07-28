@@ -40,4 +40,22 @@ export class PersonDto {
   @IsBoolean()
   @IsNotEmpty()
   status: Person['status'];
+
+  @ApiProperty({
+    description: 'Registro do médico',
+    type: String,
+    example: 'CRM 12345',
+  })
+  @IsString()
+  @IsNotEmpty()
+  register: Person['register'];
+
+  @ApiProperty({
+    description: 'Estado do registro',
+    type: String,
+    example: 'SP',
+  })
+  @IsString()
+  @IsNotEmpty()
+  registerState: Person['registerState'];
 }

@@ -61,6 +61,31 @@
                   ></v-date-picker>
                 </v-menu>
               </v-col>
+
+              <v-col class="col-12 col-sm-6">
+                <v-text-field
+                  id="form__register"
+                  v-model="entity.register"
+                  label="Registro"
+                  required
+                  :rules="form.register.rules"
+                />
+              </v-col>
+
+              <v-col class="col-12 col-sm-6">
+                <v-select
+                  v-model="entity.registerState"
+                  :hint="`${select.label}, ${select.value}`"
+                  :items="states"
+                  item-text="label"
+                  item-value="value"
+                  label="Estado do registro"
+                  persistent-hint
+                  single-line
+                  required
+                  :rules="form.registerState.rules"
+                ></v-select>
+              </v-col>
             </v-row>
           </v-container>
         </v-form>
@@ -84,6 +109,12 @@ export default {
       name: {
         rules: campoObrigatorio,
       },
+      register: {
+        rules: campoObrigatorio,
+      },
+      registerState: {
+        rules: campoObrigatorio,
+      },
       birth_date: {
         rules: campoObrigatorio,
       },
@@ -92,8 +123,40 @@ export default {
       key: undefined,
       name: undefined,
       birth_date: undefined,
+      register: undefined,
+      registerState: undefined,
       status: undefined,
     },
+    select: { value: 'AC', label: 'Acre' },
+    states: [
+      { value: 'AC', label: 'Acre' },
+      { value: 'AL', label: 'Alagoas' },
+      { value: 'AP', label: 'Amapá' },
+      { value: 'AM', label: 'Amazonas' },
+      { value: 'BA', label: 'Bahia' },
+      { value: 'CE', label: 'Ceará' },
+      { value: 'DF', label: 'Distrito Federal' },
+      { value: 'ES', label: 'Espírito Santo' },
+      { value: 'GO', label: 'Goías' },
+      { value: 'MA', label: 'Maranhão' },
+      { value: 'MT', label: 'Mato Grosso' },
+      { value: 'MS', label: 'Mato Grosso do Sul' },
+      { value: 'MG', label: 'Minas Gerais' },
+      { value: 'PA', label: 'Pará' },
+      { value: 'PB', label: 'Paraíba' },
+      { value: 'PR', label: 'Paraná' },
+      { value: 'PE', label: 'Pernambuco' },
+      { value: 'PI', label: 'Piauí' },
+      { value: 'RJ', label: 'Rio de Janeiro' },
+      { value: 'RN', label: 'Rio Grande do Norte' },
+      { value: 'RS', label: 'Rio Grande do Sul' },
+      { value: 'RO', label: 'Rondônia' },
+      { value: 'RR', label: 'Roraíma' },
+      { value: 'SC', label: 'Santa Catarina' },
+      { value: 'SP', label: 'São Paulo' },
+      { value: 'SE', label: 'Sergipe' },
+      { value: 'TO', label: 'Tocantins' },
+    ],
   }),
 
   computed: {

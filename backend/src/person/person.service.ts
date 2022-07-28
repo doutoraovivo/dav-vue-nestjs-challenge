@@ -25,6 +25,8 @@ export class PersonService {
     return this.dao.put({
       name: person.name,
       birthDate: person.birthDate,
+      register: person.register,
+      registerState: person.registerState,
       status: true,
     });
   }
