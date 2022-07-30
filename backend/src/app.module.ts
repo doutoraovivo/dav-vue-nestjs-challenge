@@ -4,6 +4,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PersonModule } from './person';
+import { ProfessionalModule } from './professional';
 import {LatencySimulatorMiddleware} from "./util";
 
 const rootPath = join(__dirname, '..', '..', '..', 'frontend', 'dist');
@@ -15,6 +16,7 @@ const rootPath = join(__dirname, '..', '..', '..', 'frontend', 'dist');
       exclude: ['/backend/*'],
     }),
     PersonModule,
+    ProfessionalModule
   ],
   controllers: [AppController],
   providers: [AppService],

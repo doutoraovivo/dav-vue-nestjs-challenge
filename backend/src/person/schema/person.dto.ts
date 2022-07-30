@@ -1,4 +1,4 @@
-import { Person } from '../../persistence/person';
+import { Person } from '../../core/personPersistence/person';
 import { ApiProperty } from '@nestjs/swagger';
 import {IsBoolean, IsDateString, IsNotEmpty, IsString, Matches} from 'class-validator';
 

@@ -12,7 +12,7 @@ import {
   Res,
   ServiceUnavailableException,
 } from '@nestjs/common';
-import { PersonService } from './person.service';
+import { ProfessionalService } from './professional.service';
 import {
   ApiBadRequestResponse,
   ApiNoContentResponse,
@@ -20,25 +20,25 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import {
-  PersonDto,
-  CreatePersonRequestDto,
-  UpdatePersonRequestDto,
+  ProfessionalDto,
+  CreateProfessionalRequestDto,
+  UpdateProfessionalRequestDto,
 } from './schema';
-import { CreatePersonResponseDto } from './schema/create.person.response.dto';
+import { CreateProfessionalResponseDto } from './schema/create.professional.response.dto';
 import { EntityNotFound } from '../core/error';
 import { Response } from 'express';
 import { Criteria } from '../core/abstract.database';
-import { ReadQueryPersonRequestDto } from './schema/read.query.person.request.dto';
-import { ReadParamPersonRequestDto } from './schema/read.param.person.request.dto';
+import { ReadQueryProfessionalRequestDto } from './schema/read.query.professional.request.dto';
+import { ReadParamProfessionalRequestDto } from './schema/read.param.professional.request.dto';
 import { BaseController } from '../base.controller';
 
 /**
  *
  */
-@Controller('backend/person')
-@ApiTags('person')
-export class PersonController extends BaseController {
-  constructor(private service: PersonService) {
+@Controller('backend/professional')
+@ApiTags('professional')
+export class ProfessionalController extends BaseController {
+  constructor(private professionalService: ProfessionalService) {
     super();
   }
 
@@ -48,12 +48,12 @@ export class PersonController extends BaseController {
    */
   @Get()
   @ApiOkResponse({
-    type: () => PersonDto,
+    type: () => ProfessionalDto,
     isArray: true,
   })
-  async readPersons(
-    @Query() filter: ReadQueryPersonRequestDto,
-  ): Promise<PersonDto[]> {
+  async readProfessionals(
+    @Query() filter: ReadQueryProfessionalRequestDto,
+  ): Promise<ProfessionalDto[]> {
     try {
       const criteria: Criteria[] = [{ key: 'status', op: '==', compare: true }];
       if (filter.name)
@@ -63,14 +63,13 @@ export class PersonController extends BaseController {
           compare: `*${filter.name.replace(/\s/, '*')}*`,
         });
 
-      const result = await this.service.query(filter.itemsPerPage, ...criteria);
+      const result = await this.professionalService.query(filter.itemsPerPage, ...criteria);
 
-      return result.map((person) => ({
-        key: person.key,
-        name: person.name,
-        birth_date: person.birthDate,
-        state: person.state,
-        status: person.status,
+      return result.map((professional) => ({
+        key: professional.key,
+        name: professional.name,
+        register: professional.register,
+        status: professional.status,
       }));
     } catch (e) {}
   }
@@ -82,13 +81,12 @@ export class PersonController extends BaseController {
   @Post()
   @ApiBadRequestResponse()
   @ApiOkResponse()
-  async createPerson(
-    @Body() entity: CreatePersonRequestDto,
-  ): Promise<CreatePersonResponseDto> {
-    return this.service.put({
+  async createProfessional(
+    @Body() entity: CreateProfessionalRequestDto,
+  ): Promise<CreateProfessionalResponseDto> {
+    return this.professionalService.put({
       name: entity.name,
-      state: entity.state,
-      birthDate: entity.birth_date,
+      register: entity.register,
     });
   }
 
@@ -99,9 +97,9 @@ export class PersonController extends BaseController {
   @Delete(':key')
   @ApiOkResponse()
   @ApiNoContentResponse()
-  async deletePerson(@Param() param: ReadParamPersonRequestDto): Promise<void> {
+  async deleteProfessional(@Param() param: ReadParamProfessionalRequestDto): Promise<void> {
     try {
-      await this.service.delete(param.key);
+      await this.professionalService.delete(param.key);
     } catch (e) {
       if (e.constructor.name === EntityNotFound.name) {
         throw new NotFoundException();
@@ -118,18 +116,17 @@ export class PersonController extends BaseController {
   @Get(':key')
   @ApiOkResponse()
   @ApiNoContentResponse()
-  async readPerson(
-    @Param() param: ReadParamPersonRequestDto,
+  async readProfessional(
+    @Param() param: ReadParamProfessionalRequestDto,
     @Res() res: Response,
   ): Promise<void> {
     try {
-      const person = await this.service.get(param.key);
+      const professional = await this.professionalService.get(param.key);
       res.json({
-        key: person.key,
-        name: person.name,
-        birth_date: person.birthDate,
-        state: person.state,
-        status: person.status,
+        key: professional.key,
+        name: professional.name,
+        register: professional.register,
+        status: professional.status,
       });
     } catch (e) {
       if (e.constructor.name === EntityNotFound.name) {
@@ -148,22 +145,20 @@ export class PersonController extends BaseController {
   @ApiOkResponse()
   @ApiNoContentResponse()
   @ApiBadRequestResponse()
-  async updatePerson(
-    @Param() param: ReadParamPersonRequestDto,
+  async updateProfessional(
+    @Param() param: ReadParamProfessionalRequestDto,
     @Res() res: Response,
-    @Body() person: UpdatePersonRequestDto,
+    @Body() professional: UpdateProfessionalRequestDto,
   ): Promise<void> {
     try {
-      const updated = await this.service.update(param.key, {
-        name: person.name,
-        birthDate: person.birth_date,
-        state: person.state,
+      const updated = await this.professionalService.update(param.key, {
+        name: professional.name,
+        register: professional.register,
       });
       res.json({
         key: param.key,
         name: updated.name,
-        birth_date: updated.birthDate,
-        state: updated.state,
+        register: updated.register,
         status: updated.status,
       });
     } catch (e) {

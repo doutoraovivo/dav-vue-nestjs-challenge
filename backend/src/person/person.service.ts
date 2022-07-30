@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { PersonDatabase } from '../persistence';
-import { Person } from '../persistence/person';
-import { Criteria } from '../persistence/abstract.database';
-
+import { PersonDatabase } from '../core/personPersistence';
+import { Person } from '../core/personPersistence/person';
+import { Criteria } from '../core/abstract.database';
 @Injectable()
 export class PersonService {
   constructor(private dao: PersonDatabase) {}

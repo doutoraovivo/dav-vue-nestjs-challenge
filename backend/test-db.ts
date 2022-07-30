@@ -1,4 +1,4 @@
-import { PersonDatabase } from './src/persistence/person.database';
+import { PersonDatabase } from './src/core/personPersistence/person.database';
 
 process.env.DEBUG = '*';
 
