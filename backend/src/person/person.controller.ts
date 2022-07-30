@@ -69,8 +69,7 @@ export class PersonController extends BaseController {
         key: person.key,
         name: person.name,
         birth_date: person.birthDate,
-        register: person.register,
-        registerState: person.registerState,
+        state: person.state,
         status: person.status,
       }));
     } catch (e) {}
@@ -88,8 +87,7 @@ export class PersonController extends BaseController {
   ): Promise<CreatePersonResponseDto> {
     return this.service.put({
       name: entity.name,
-      register: entity.register,
-      registerState: entity.registerState,
+      state: entity.state,
       birthDate: entity.birth_date,
     });
   }
@@ -130,8 +128,7 @@ export class PersonController extends BaseController {
         key: person.key,
         name: person.name,
         birth_date: person.birthDate,
-        register: person.register,
-        registerState: person.registerState,
+        state: person.state,
         status: person.status,
       });
     } catch (e) {
@@ -160,13 +157,13 @@ export class PersonController extends BaseController {
       const updated = await this.service.update(param.key, {
         name: person.name,
         birthDate: person.birth_date,
-        registerState: person.registerState,
-        register: person.register,
+        state: person.state,
       });
       res.json({
         key: param.key,
         name: updated.name,
         birth_date: updated.birthDate,
+        state: updated.state,
         status: updated.status,
       });
     } catch (e) {

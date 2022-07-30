@@ -42,20 +42,11 @@ export class PersonDto {
   status: Person['status'];
 
   @ApiProperty({
-    description: 'Registro do médico',
-    type: String,
-    example: 'CRM 12345',
-  })
-  @IsString()
-  @IsNotEmpty()
-  register: Person['register'];
-
-  @ApiProperty({
-    description: 'Estado do registro',
+    description: 'Estado da pessoa',
     type: String,
     example: 'SP',
   })
   @IsString()
   @IsNotEmpty()
-  registerState: Person['registerState'];
+  state: Person['state'];
 }
