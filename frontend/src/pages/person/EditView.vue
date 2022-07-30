@@ -63,27 +63,17 @@
               </v-col>
 
               <v-col class="col-12 col-sm-6">
-                <v-text-field
-                  id="form__register"
-                  v-model="entity.register"
-                  label="Registro"
-                  required
-                  :rules="form.register.rules"
-                />
-              </v-col>
-
-              <v-col class="col-12 col-sm-6">
                 <v-select
-                  v-model="entity.registerState"
+                  v-model="entity.state"
                   :hint="`${select.label}, ${select.value}`"
                   :items="states"
                   item-text="label"
                   item-value="value"
-                  label="Estado do registro"
+                  label="Estado"
                   persistent-hint
                   single-line
                   required
-                  :rules="form.registerState.rules"
+                  :rules="form.state.rules"
                 ></v-select>
               </v-col>
             </v-row>
@@ -109,10 +99,7 @@ export default {
       name: {
         rules: campoObrigatorio,
       },
-      register: {
-        rules: campoObrigatorio,
-      },
-      registerState: {
+      state: {
         rules: campoObrigatorio,
       },
       birth_date: {
@@ -123,8 +110,7 @@ export default {
       key: undefined,
       name: undefined,
       birth_date: undefined,
-      register: undefined,
-      registerState: undefined,
+      state: undefined,
       status: undefined,
     },
     select: { value: 'AC', label: 'Acre' },

@@ -34,8 +34,7 @@ export default {
         value: 'name',
       },
       { text: 'Data de Nascimento', value: 'birth_date' },
-      { text: 'Registro', value: 'register' },
-      { text: 'Estado', value: 'registerState' },
+      { text: 'Estado', value: 'state' },
     ],
   }),
   methods: {
