@@ -31,11 +31,29 @@ export class ProfessionalDto {
   status: Professional['status'];
 
   @ApiProperty({
-    description: 'Registro',
+    description: 'Sigla do registro',
     type: String,
-    example: 'CRM 12345/SP',
+    example: 'CRM',
   })
   @IsString()
   @IsNotEmpty()
-  register: Professional['register'];
+  registerInitials: Professional['registerInitials'];
+
+  @ApiProperty({
+    description: 'Código do registro',
+    type: String,
+    example: '12345',
+  })
+  @IsString()
+  @IsNotEmpty()
+  registerCode: Professional['registerCode'];
+
+  @ApiProperty({
+    description: 'Estado do registro',
+    type: String,
+    example: 'SP',
+  })
+  @IsString()
+  @IsNotEmpty()
+  registerState: Professional['registerState'];
 }

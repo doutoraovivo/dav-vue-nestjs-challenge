@@ -68,7 +68,9 @@ export class ProfessionalController extends BaseController {
       return result.map((professional) => ({
         key: professional.key,
         name: professional.name,
-        register: professional.register,
+        registerInitials: professional.registerInitials,
+        registerCode: professional.registerCode,
+        registerState: professional.registerState,
         status: professional.status,
       }));
     } catch (e) {}
@@ -86,7 +88,9 @@ export class ProfessionalController extends BaseController {
   ): Promise<CreateProfessionalResponseDto> {
     return this.professionalService.put({
       name: entity.name,
-      register: entity.register,
+      registerInitials: entity.registerInitials,
+      registerCode: entity.registerCode,
+      registerState: entity.registerState,
     });
   }
 
@@ -125,7 +129,9 @@ export class ProfessionalController extends BaseController {
       res.json({
         key: professional.key,
         name: professional.name,
-        register: professional.register,
+        registerInitials: professional.registerInitials,
+        registerCode: professional.registerCode,
+        registerState: professional.registerState,
         status: professional.status,
       });
     } catch (e) {
@@ -153,12 +159,16 @@ export class ProfessionalController extends BaseController {
     try {
       const updated = await this.professionalService.update(param.key, {
         name: professional.name,
-        register: professional.register,
+        registerInitials: professional.registerInitials,
+        registerCode: professional.registerCode,
+        registerState: professional.registerState,
       });
       res.json({
         key: param.key,
         name: updated.name,
-        register: updated.register,
+        registerInitials: updated.registerInitials,
+        registerCode: updated.registerCode,
+        registerState: updated.registerState,
         status: updated.status,
       });
     } catch (e) {

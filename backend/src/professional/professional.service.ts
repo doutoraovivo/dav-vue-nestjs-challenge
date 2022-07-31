@@ -24,7 +24,9 @@ export class ProfessionalService {
   async put(professional: Omit<Professional, 'key' | 'status'>) {
     return this.dao.put({
       name: professional.name,
-      register: professional.register,
+      registerInitials: professional.registerInitials,
+      registerCode: professional.registerCode,
+      registerState: professional.registerState,
       status: true,
     });
   }
@@ -36,7 +38,9 @@ export class ProfessionalService {
   async update(key: Professional['key'], professional: Omit<Professional, 'key' | 'status'>) {
     const old = await this.dao.get(key);
     old.name = professional.name;
-    old.register = professional.register;
+    old.registerInitials = professional.registerInitials;
+    old.registerCode = professional.registerCode;
+    old.registerState = professional.registerState;
     return this.dao.update(old);
   }
 }
