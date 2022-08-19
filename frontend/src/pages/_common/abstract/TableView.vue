@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import { CommonStore } from '@/_plugins';
+
 export default {
   name: 'DavTableView',
 
@@ -98,6 +100,12 @@ export default {
     },
 
     routeEdit: {
+      type: String,
+      required: false,
+      default: undefined,
+    },
+
+    dispatchDelete: {
       type: String,
       required: false,
       default: undefined,
@@ -148,22 +156,32 @@ export default {
       this.$store.dispatch(this.$props.dispatch, this.$route.query);
     }
 
-    if (this.routeDelete) {
+    CommonStore.dispatch('common/contextualActions', [
+      { emit: 'filter:show', icon: 'mdi-filter', name: 'Filtro', key: 1 },
+    ]);
+
+    if (this.dispatchDelete) {
       this.$store.dispatch('common/contextualActionsOnSelection', [
         { emit: 'item:delete', icon: 'mdi-delete', name: 'Delete', key: 1 },
       ]);
-    }
 
-    this.appBar.$on(
-      'item:delete',
-      function () {
-        this.deleteItems();
-      }.bind(this),
-    );
+      this.appBar.$on(
+        'item:delete',
+        function () {
+          this.deleteItems();
+        }.bind(this),
+      );
+    }
   },
 
-  beforeDestroy() {
-    this.$store.dispatch('common/contextualActionsOnSelection', []);
+  beforeRouteLeave(to, from, next) {
+    console.debug('beforeRouteLeave');
+    Promise.allSettled([
+      CommonStore.dispatch('common/contextualActions', []),
+      CommonStore.dispatch('common/contextualActionsOnSelection', []),
+    ])
+      // eslint-disable-next-line no-unused-vars
+      .then((_) => next());
     this.$store.dispatch('common/selection', undefined);
     this.appBar.$off('item:delete');
   },
@@ -175,7 +193,7 @@ export default {
       }
     },
     deleteItems() {
-      this.$store.dispatch('person/delete', this.ui.selected);
+      this.$store.dispatch(this.dispatchDelete, this.ui.selected);
       this.ui.selected = undefined;
       this.$store.dispatch('common/selection', undefined);
     },

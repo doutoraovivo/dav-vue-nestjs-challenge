@@ -6,6 +6,7 @@
       dispatch="person/find"
       route-new="/person/new"
       route-edit="/person/edit"
+      dispatch-delete="person/delete"
       delete-item
       show-select
     >

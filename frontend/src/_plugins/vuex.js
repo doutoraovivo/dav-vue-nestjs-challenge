@@ -14,7 +14,12 @@ export const CommonStore = {
     store.registerModule(path, rawModule, options);
   },
 
-  dispatch(_type, _payload) {
-    return store.dispatch(_type, _payload);
+  dispatch(type, payload) {
+    console.debug(
+      'dispatch',
+      type,
+      JSON.stringify(payload),
+    );
+    return store.dispatch(type, payload);
   },
 };
