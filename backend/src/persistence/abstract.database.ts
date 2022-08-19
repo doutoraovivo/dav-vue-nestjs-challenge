@@ -6,6 +6,15 @@ import { AbstractEntity } from './abstract.entity';
 
 const db = new AceBase('local');
 
+['SIGINT', 'SIGTERM'].forEach((event) =>
+  process.on(event, () => {
+    db.close().then((ok) => {
+      console.debug('AceBase', 'close()');
+      process.exit();
+    });
+  }),
+);
+
 export interface Criteria {
   key: string | number;
   op: QueryOperator;
@@ -88,7 +97,10 @@ export abstract class AbstractDatabase<T extends AbstractEntity> {
    * @param criteria
    */
   @ParameterLog()
-  public async query(itemsPerPage = 1000, ...criteria: Criteria[]): Promise<T[]> {
+  public async query(
+    itemsPerPage = 1000,
+    ...criteria: Criteria[]
+  ): Promise<T[]> {
     let query = this.ref.query().take(itemsPerPage);
     criteria.forEach(
       (criteria) =>

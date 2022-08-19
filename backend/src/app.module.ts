@@ -1,10 +1,15 @@
-import {MiddlewareConsumer, Module, NestModule} from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  OnModuleDestroy,
+} from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PersonModule } from './person';
-import {LatencySimulatorMiddleware} from "./util";
+import { LatencySimulatorMiddleware } from './util';
 
 const rootPath = join(__dirname, '..', '..', '..', 'frontend', 'dist');
 
@@ -21,6 +26,6 @@ const rootPath = join(__dirname, '..', '..', '..', 'frontend', 'dist');
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
-      consumer.apply(LatencySimulatorMiddleware).forRoutes('*');
+    consumer.apply(LatencySimulatorMiddleware).forRoutes('*');
   }
 }
