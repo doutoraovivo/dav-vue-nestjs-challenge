@@ -15,11 +15,6 @@ export const CommonStore = {
   },
 
   dispatch(type, payload) {
-    console.debug(
-      'dispatch',
-      type,
-      JSON.stringify(payload),
-    );
     return store.dispatch(type, payload);
   },
 };

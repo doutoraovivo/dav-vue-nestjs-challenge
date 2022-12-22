@@ -71,6 +71,17 @@ export default {
 
   inject: ['appBar'],
 
+  beforeRouteLeave(to, from, next) {
+    Promise.allSettled([
+      CommonStore.dispatch('common/contextualActions', []),
+      CommonStore.dispatch('common/contextualActionsOnSelection', []),
+    ])
+        // eslint-disable-next-line no-unused-vars
+        .then((_) => next());
+    this.$store.dispatch('common/selection', undefined);
+    this.appBar.$off('item:delete');
+  },
+
   props: {
     dispatch: {
       type: String,
@@ -172,18 +183,6 @@ export default {
         }.bind(this),
       );
     }
-  },
-
-  beforeRouteLeave(to, from, next) {
-    console.debug('beforeRouteLeave');
-    Promise.allSettled([
-      CommonStore.dispatch('common/contextualActions', []),
-      CommonStore.dispatch('common/contextualActionsOnSelection', []),
-    ])
-      // eslint-disable-next-line no-unused-vars
-      .then((_) => next());
-    this.$store.dispatch('common/selection', undefined);
-    this.appBar.$off('item:delete');
   },
 
   methods: {

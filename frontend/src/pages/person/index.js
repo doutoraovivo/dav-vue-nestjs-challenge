@@ -25,7 +25,7 @@ CommonRouter.addRoute([
           {
             path: '',
             component: () =>
-              import(/* webpackChunkName: "person" */ './FilterView'),
+              import(/* webpackChunkName: "person.filter" */ './FilterView'),
             meta: {
               title: 'Person',
             },
@@ -37,12 +37,12 @@ CommonRouter.addRoute([
                 path: '',
                 name: 'person-table',
                 component: () =>
-                  import(/* webpackChunkName: "person" */ './TableView'),
+                  import(/* webpackChunkName: "person.filter" */ './TableView'),
                 children: [
                   {
                     path: 'new',
                     component: () =>
-                      import(/* webpackChunkName: "person" */ './EditView'),
+                      import(/* webpackChunkName: "person.edit" */ './EditView'),
                     meta: {
                       title: 'Person New',
                       icon: 'mdi-pencil',
@@ -56,7 +56,7 @@ CommonRouter.addRoute([
       },
       {
         path: 'edit/:key',
-        component: () => import(/* webpackChunkName: "person" */ './EditView'),
+        component: () => import(/* webpackChunkName: "person.edit" */ './EditView'),
         meta: {
           title: 'Person Edit',
           icon: 'mdi-pencil',
@@ -64,7 +64,7 @@ CommonRouter.addRoute([
       },
       {
         path: 'new',
-        component: () => import(/* webpackChunkName: "person" */ './EditView'),
+        component: () => import(/* webpackChunkName: "person.edit" */ './EditView'),
         meta: {
           title: 'Person New',
           icon: 'mdi-pencil',

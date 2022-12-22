@@ -55,10 +55,6 @@ export default {
     itemsPerPage: undefined,
   }),
 
-  beforeCreate() {
-    console.debug('maoe');
-  },
-
   created() {
     if (this.$route.query) {
       for (const [key, value] of Object.entries(this.$route.query)) {

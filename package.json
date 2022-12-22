@@ -12,11 +12,5 @@
     "frontend"
   ],
   "author": "Luciano Jesus Lima <luciano@doutoraovivo.com.br>",
-  "license": "ISC",
-  "dependencies": {
-    "@types/quotesy": "^1.0.1",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
-    "quotesy": "^1.0.8"
-  }
+  "license": "ISC"
 }
